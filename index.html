@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot</title>
+  <link rel="icon" type="img/webp" href="assets/bot.webp">
+</head>
+
+<body>
+  <div class="container-js"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function ChatInput() {
+      return (
+        <>
+          <input  
+            placeholder="Send your message" 
+            size="30" />
+          <button>SEND</button>
+        </>
+      );
+    }
+    function ChatMessage({message,sender} ){
+      // if (sender == "user"){
+      //   return(
+      //     <div>
+      //       <img src="assets/bot.webp" width="50" />
+      //       {message}
+      //     </div>
+      //   );
+      // }
+      return(
+        <div>
+          {sender =="bot" && (
+            <img src="assets/bot.webp" width="50" />
+          )}
+          {message}
+          {sender =="user" && (
+            <img src="assets/user.webp"
+             width="50" />)}
+        </div>
+      );
+    }
+    function App(){
+        return (
+          <>
+        <ChatInput />
+        <ChatMessage 
+          message="Hello Chatbot" 
+          sender="user"/>
+        <ChatMessage 
+          message="Hello User! How can I help you" 
+          sender="bot"/>
+        <ChatMessage 
+          message="Can you get me today date?" 
+          sender="user"/>
+        <ChatMessage 
+          message="Today date is 14th Oct 2025" 
+          sender="bot"/>
+      </>
+        );
+    }
+
+
+    const container = document.querySelector('.container-js');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+  </script>
+</body>
+</html>
